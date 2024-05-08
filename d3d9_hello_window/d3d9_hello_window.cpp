@@ -4,9 +4,9 @@
 
 // the WindowProc function prototype
 LRESULT CALLBACK WindowProc(HWND hWnd,
-                         UINT message,
-                         WPARAM wParam,
-                         LPARAM lParam);
+                            UINT message,
+                            WPARAM wParam,
+                            LPARAM lParam);
 
 // the entry point for any Windows program
 int WINAPI WinMain(HINSTANCE hInstance,
@@ -90,11 +90,11 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
     {
         // this message is read when the window is closed
         case WM_DESTROY:
-            {
-                // close the application entirely
-                PostQuitMessage(0);
-                return 0;
-            } break;
+        {
+            // close the application entirely
+            PostQuitMessage(0);
+            return 0;
+        } break;
     }
 
     // Handle any messages the switch statement didn't

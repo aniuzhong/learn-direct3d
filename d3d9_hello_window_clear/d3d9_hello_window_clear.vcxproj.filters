@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hello_window.cpp">
+    <ClCompile Include="d3d9_hello_window_clear.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

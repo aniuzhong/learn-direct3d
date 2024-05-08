@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="hello_triangle.cpp">
+    <ClCompile Include="d3d9_hello_triangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
