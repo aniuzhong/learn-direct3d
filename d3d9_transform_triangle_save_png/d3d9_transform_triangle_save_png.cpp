@@ -18,6 +18,7 @@
 LPDIRECT3D9 d3d;    // the pointer to our Direct3D interface
 LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
 LPDIRECT3DVERTEXBUFFER9 v_buffer = NULL;    // the pointer to the vertex buffer
+LPDIRECT3DSURFACE9 pBackBuffer = nullptr;
 
 // function prototypes
 void InitD3D(HWND hWnd);    // sets up and initializes Direct3D
@@ -179,12 +180,11 @@ void RenderFrame(void)
 
     d3ddev->EndScene();
 
-    // save backbuffer to png
-    IDirect3DSurface9* pSurface = nullptr;
-    d3ddev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pSurface);
+    // save back buffer to png
+    d3ddev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuffer);
     std::wstring wstrIndex = std::to_wstring(index);
     std::wstring wstrPath = L"D:/" + wstrIndex + L".png";
-    D3DXSaveSurfaceToFile(wstrPath.c_str(), D3DXIFF_PNG, pSurface, NULL, NULL);
+    D3DXSaveSurfaceToFile(wstrPath.c_str(), D3DXIFF_PNG, pBackBuffer, NULL, NULL);
 
     d3ddev->Present(NULL, NULL, NULL, NULL);
 }
@@ -193,6 +193,7 @@ void RenderFrame(void)
 // this is the function that cleans up Direct3D and COM
 void CleanD3D(void)
 {
+    pBackBuffer->Release();
     v_buffer->Release();    // close and release the vertex buffer
     d3ddev->Release();    // close and release the 3D device
     d3d->Release();    // close and release Direct3D
