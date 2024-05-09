@@ -18,10 +18,10 @@ LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
 LPDIRECT3DVERTEXBUFFER9 v_buffer = NULL;    // the pointer to the vertex buffer
 
 // function prototypes
-void initD3D(HWND hWnd);    // sets up and initializes Direct3D
-void render_frame(void);    // renders a single frame
-void cleanD3D(void);    // closes Direct3D and releases memory
-void init_graphics(void);    // 3D declarations
+void InitD3D(HWND hWnd);    // sets up and initializes Direct3D
+void RenderFrame(void);    // renders a single frame
+void CleanD3D(void);    // closes Direct3D and releases memory
+void InitGraphics(void);    // 3D declarations
 
 struct CUSTOMVERTEX {FLOAT X, Y, Z; DWORD COLOR;};
 #define CUSTOMFVF (D3DFVF_XYZ | D3DFVF_DIFFUSE)
@@ -57,7 +57,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
     ShowWindow(hWnd, nCmdShow);
 
     // set up and initialize Direct3D
-    initD3D(hWnd);
+    InitD3D(hWnd);
 
     // enter the main loop:
 
@@ -74,11 +74,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
         if(msg.message == WM_QUIT)
             break;
 
-        render_frame();
+        RenderFrame();
     }
 
     // clean up DirectX and COM
-    cleanD3D();
+    CleanD3D();
 
     return msg.wParam;
 }
@@ -101,7 +101,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 
 
 // this function initializes and prepares Direct3D for use
-void initD3D(HWND hWnd)
+void InitD3D(HWND hWnd)
 {
     d3d = Direct3DCreate9(D3D_SDK_VERSION);
 
@@ -123,14 +123,14 @@ void initD3D(HWND hWnd)
                       &d3dpp,
                       &d3ddev);
 
-    init_graphics();    // call the function to initialize the triangle
+    InitGraphics();    // call the function to initialize the triangle
 
     d3ddev->SetRenderState(D3DRS_LIGHTING, FALSE);    // turn off the 3D lighting
 }
 
 
 // this is the function used to render a single frame
-void render_frame(void)
+void RenderFrame(void)
 {
     d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 
@@ -182,7 +182,7 @@ void render_frame(void)
 
 
 // this is the function that cleans up Direct3D and COM
-void cleanD3D(void)
+void CleanD3D(void)
 {
     v_buffer->Release();    // close and release the vertex buffer
     d3ddev->Release();    // close and release the 3D device
@@ -191,7 +191,7 @@ void cleanD3D(void)
 
 
 // this is the function that puts the 3D models into video RAM
-void init_graphics(void)
+void InitGraphics(void)
 {
     // create the vertices using the CUSTOMVERTEX struct
     CUSTOMVERTEX vertices[] = 

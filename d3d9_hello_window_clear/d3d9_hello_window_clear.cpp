@@ -11,9 +11,9 @@ LPDIRECT3D9 d3d;    // the pointer to our Direct3D interface
 LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
 
 // function prototypes
-void initD3D(HWND hWnd);    // sets up and initializes Direct3D
-void render_frame(void);    // renders a single frame
-void cleanD3D(void);    // closes Direct3D and releases memory
+void InitD3D(HWND hWnd);    // sets up and initializes Direct3D
+void RenderFrame(void);    // renders a single frame
+void CleanD3D(void);    // closes Direct3D and releases memory
 
 // the WindowProc function prototype
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -54,7 +54,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
     ShowWindow(hWnd, nCmdShow);
 
     // set up and initialize Direct3D
-    initD3D(hWnd);
+    InitD3D(hWnd);
 
     // enter the main loop:
 
@@ -71,11 +71,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
         if(msg.message == WM_QUIT)
             break;
 
-        render_frame();
+        RenderFrame();
     }
 
     // clean up DirectX and COM
-    cleanD3D();
+    CleanD3D();
 
     return msg.wParam;
 }
@@ -98,7 +98,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 
 
 // this function initializes and prepares Direct3D for use
-void initD3D(HWND hWnd)
+void InitD3D(HWND hWnd)
 {
     d3d = Direct3DCreate9(D3D_SDK_VERSION);    // create the Direct3D interface
 
@@ -121,7 +121,7 @@ void initD3D(HWND hWnd)
 
 
 // this is the function used to render a single frame
-void render_frame(void)
+void RenderFrame(void)
 {
     // clear the window to a deep blue
     d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 40, 100), 1.0f, 0);
@@ -137,7 +137,7 @@ void render_frame(void)
 
 
 // this is the function that cleans up Direct3D and COM
-void cleanD3D(void)
+void CleanD3D(void)
 {
     d3ddev->Release();    // close and release the 3D device
     d3d->Release();    // close and release Direct3D
