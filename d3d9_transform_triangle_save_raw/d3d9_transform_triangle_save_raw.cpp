@@ -18,8 +18,6 @@
 LPDIRECT3D9 d3d;    // the pointer to our Direct3D interface
 LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
 LPDIRECT3DVERTEXBUFFER9 v_buffer = NULL;    // the pointer to the vertex buffer
-LPDIRECT3DSURFACE9 pBackBuffer = nullptr;
-LPDIRECT3DSURFACE9 pOffscreenPlainSurface = nullptr;
 
 // function prototypes
 void InitD3D(HWND hWnd);    // sets up and initializes Direct3D
@@ -185,12 +183,17 @@ void RenderFrame(void)
 
     d3ddev->EndScene();
 
-    // hook to IDirect3DDevice9::Present 
+    // hook to IDirect3DDevice9::Present
+    LPDIRECT3DSURFACE9 pBackBuffer = nullptr;
     d3ddev->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuffer);
+
     D3DSURFACE_DESC desc;
     pBackBuffer->GetDesc(&desc);
+
+    LPDIRECT3DSURFACE9 pOffscreenPlainSurface = nullptr;
     d3ddev->CreateOffscreenPlainSurface(desc.Width, desc.Height, desc.Format, D3DPOOL_SYSTEMMEM,
                                         &pOffscreenPlainSurface, NULL);
+
     d3ddev->GetRenderTargetData(pBackBuffer, pOffscreenPlainSurface);
 
     D3DLOCKED_RECT locked_rect;
@@ -206,6 +209,9 @@ void RenderFrame(void)
 
     pOffscreenPlainSurface->UnlockRect();
 
+    pOffscreenPlainSurface->Release();
+    pBackBuffer->Release();
+
     d3ddev->Present(NULL, NULL, NULL, NULL);
 }
 
@@ -213,8 +219,6 @@ void RenderFrame(void)
 // this is the function that cleans up Direct3D and COM
 void CleanD3D(void)
 {
-    pOffscreenPlainSurface->Release();
-    pBackBuffer->Release();
     v_buffer->Release();    // close and release the vertex buffer
     d3ddev->Release();    // close and release the 3D device
     d3d->Release();    // close and release Direct3D
