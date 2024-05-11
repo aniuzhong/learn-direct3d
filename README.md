@@ -1,5 +1,23 @@
 # Learn Direct3D
 
+
+## d3d9_hello_triangle_indexed
+
+- Make the triangle rotate.
+
+``` C++
+static float degree = 0.0f; degree += 1.0f;
+D3DXMatrixRotationY(&matRotateY, pi * (degree / 180.0));
+```
+
+- Make the triangle rotate in the other direction.
+
+``` C++
+static float degree = 0.0f; degree -= 1.0f;
+D3DXMatrixRotationY(&matRotateY, pi * (degree / 180.0));
+```
+
+
 ## d3d9_transform_triangle_save_raw
 
 This program shows how to capture the screen in `d3d9_transform_triangle`, a rotating triangle, to raw bitmap in memory without using `D3DXSaveSurfaceToFile` (which is used in `d3d9_transform_triangle_save_png`). This program is referenced from a [Q&A on StackExchange](https://gamedev.stackexchange.com/questions/41958/how-to-capture-the-screen-in-directx-9-to-a-raw-bitmap-in-memory-without-using-d). The Maximus Minimus' answer didn't give a specific implementation, so I finished it here.
