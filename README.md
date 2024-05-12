@@ -1,22 +1,38 @@
 # Learn Direct3D
 
+## d3d9_hello_triangle
 
 ## d3d9_hello_triangle_indexed
 
 - Make the triangle rotate.
-
 ``` C++
 static float degree = 0.0f; degree += 1.0f;
+D3DXMATRIX matRotateY;
 D3DXMatrixRotationY(&matRotateY, pi * (degree / 180.0));
+d3ddev->SetTransform(D3DTS_WORLD, &matRotateY);
 ```
 
 - Make the triangle rotate in the other direction.
-
 ``` C++
 static float degree = 0.0f; degree -= 1.0f;
+D3DXMATRIX matRotateY;
 D3DXMatrixRotationY(&matRotateY, pi * (degree / 180.0));
+d3ddev->SetTransform(D3DTS_WORLD, &matRotateY);
 ```
 
+- As the triangle rotates, make it lift off like a rocket.
+``` C++
+static float degree = 0.0f; degree += 1.0f;
+D3DXMATRIX matRotateY;
+D3DXMatrixRotationY(&matRotateY, pi * (degree / 180.0));
+
+static float y = 0.0f; y += 0.01f;
+D3DXMATRIX matTranslation;
+D3DXMatrixTranslation(&matTranslation, 0, y, 0);
+
+D3DXMATRIX matTransformation = matRotateY * matTranslation;
+d3ddev->SetTransform(D3DTS_WORLD, &matTransformation);
+```
 
 ## d3d9_transform_triangle_save_raw
 
