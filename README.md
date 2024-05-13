@@ -34,6 +34,32 @@ D3DXMATRIX matTransformation = matRotateY * matTranslation;
 d3ddev->SetTransform(D3DTS_WORLD, &matTransformation);
 ```
 
+- Extend the far view-plane so that the rocket does not disappear.
+``` C++
+D3DXVECTOR3 vec3Eye(0.0f, 0.0f, 100.0f);    // the camera position
+D3DXMatrixPerspectiveFovLH(&matProjection,
+                            D3DXToRadian(45),    // the horizontal field of view
+                            (FLOAT)SCREEN_WIDTH / (FLOAT)SCREEN_HEIGHT, // aspect ratio
+                            1.0f,    // the near view-plane
+                            10000.0f);    // the far view-plane
+```
+
+- Make the triangle lie flat while it rotates.
+``` C++
+D3DXMATRIX matRotateY, matRotateX;
+static float degree = 0.0f; degree += 1.0f;
+D3DXMatrixRotationY(&matRotateY, pi * (degree / 180.0));
+D3DXMatrixRotationX(&matRotateX, pi * (-89 / 180.0));
+```
+
+- Make the triangle lie flat while it rotates.
+``` C++
+D3DXMATRIX matRotateZ;
+static float degree = 0.0f; degree += 1.0f;
+D3DXMatrixRotationZ(&matRotateZ, pi * (degree / 180.0));
+```
+
+
 ## d3d9_transform_triangle_save_raw
 
 This program shows how to capture the screen in `d3d9_transform_triangle`, a rotating triangle, to raw bitmap in memory without using `D3DXSaveSurfaceToFile` (which is used in `d3d9_transform_triangle_save_png`). This program is referenced from a [Q&A on StackExchange](https://gamedev.stackexchange.com/questions/41958/how-to-capture-the-screen-in-directx-9-to-a-raw-bitmap-in-memory-without-using-d). The Maximus Minimus' answer didn't give a specific implementation, so I finished it here.
