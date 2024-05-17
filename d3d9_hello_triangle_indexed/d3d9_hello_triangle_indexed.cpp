@@ -144,8 +144,6 @@ void InitD3D(HWND hWnd)
 // this is the function used to render a single frame
 void RenderFrame(void)
 {
-    const double pi = 3.14159265358979323846;
-
     d3ddev->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
     d3ddev->Clear(0, NULL, D3DCLEAR_ZBUFFER, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
 
@@ -159,7 +157,7 @@ void RenderFrame(void)
     D3DXMATRIX matRotateY;    // a matrix to store the rotation information
 
     // build a matrix to rotate the model based on the increasing float value
-    D3DXMatrixRotationY(&matRotateY, pi * (0.0 / 180.0));
+    D3DXMatrixRotationY(&matRotateY, D3DXToRadian(0));
     d3ddev->SetTransform(D3DTS_WORLD, &matRotateY);
 
     D3DXMATRIX matView;    // the view transform matrix

@@ -8,7 +8,7 @@
 ``` C++
 static float degree = 0.0f; degree += 1.0f;
 D3DXMATRIX matRotateY;
-D3DXMatrixRotationY(&matRotateY, pi * (degree / 180.0));
+D3DXMatrixRotationY(&matRotateY, D3DXToRadian(degree));
 d3ddev->SetTransform(D3DTS_WORLD, &matRotateY);
 ```
 
@@ -16,7 +16,7 @@ d3ddev->SetTransform(D3DTS_WORLD, &matRotateY);
 ``` C++
 static float degree = 0.0f; degree -= 1.0f;
 D3DXMATRIX matRotateY;
-D3DXMatrixRotationY(&matRotateY, pi * (degree / 180.0));
+D3DXMatrixRotationY(&matRotateY, D3DXToRadian(degree));
 d3ddev->SetTransform(D3DTS_WORLD, &matRotateY);
 ```
 
@@ -24,7 +24,7 @@ d3ddev->SetTransform(D3DTS_WORLD, &matRotateY);
 ``` C++
 static float degree = 0.0f; degree += 1.0f;
 D3DXMATRIX matRotateY;
-D3DXMatrixRotationY(&matRotateY, pi * (degree / 180.0));
+D3DXMatrixRotationY(&matRotateY, D3DXToRadian(degree));
 
 static float y = 0.0f; y += 0.01f;
 D3DXMATRIX matTranslation;
