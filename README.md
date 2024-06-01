@@ -25,11 +25,9 @@ d3ddev->SetTransform(D3DTS_WORLD, &matRotateY);
 static float degree = 0.0f; degree += 1.0f;
 D3DXMATRIX matRotateY;
 D3DXMatrixRotationY(&matRotateY, D3DXToRadian(degree));
-
 static float y = 0.0f; y += 0.01f;
 D3DXMATRIX matTranslation;
 D3DXMatrixTranslation(&matTranslation, 0, y, 0);
-
 D3DXMATRIX matTransformation = matRotateY * matTranslation;
 d3ddev->SetTransform(D3DTS_WORLD, &matTransformation);
 ```
@@ -46,19 +44,31 @@ D3DXMatrixPerspectiveFovLH(&matProjection,
 
 - Make the triangle lie flat while it rotates.
 ``` C++
-D3DXMATRIX matRotateY, matRotateX;
 static float degree = 0.0f; degree += 1.0f;
-D3DXMatrixRotationY(&matRotateY, pi * (degree / 180.0));
-D3DXMatrixRotationX(&matRotateX, pi * (-89 / 180.0));
+D3DXMATRIX matRotateX, matRotateY;
+D3DXMatrixRotationY(&matRotateY, D3DXToRadian(degree));
+D3DXMatrixRotationX(&matRotateX, D3DXToRadian(-89));
+D3DXMATRIX matTransformation = matRotateY * matRotateX;
+d3ddev->SetTransform(D3DTS_WORLD, &matTransformation);
 ```
 
-- Make the triangle lie flat while it rotates.
+- Make the triangle rotate instead along the z-axis.
 ``` C++
-D3DXMATRIX matRotateZ;
 static float degree = 0.0f; degree += 1.0f;
-D3DXMatrixRotationZ(&matRotateZ, pi * (degree / 180.0));
+D3DXMATRIX matRotateZ;
+D3DXMatrixRotationZ(&matRotateZ, D3DXToRadian(degree));
+d3ddev->SetTransform(D3DTS_WORLD, &matRotateZ);
 ```
 
+- Make the position of the camera change and set it up to zoom in and zoom out.
+``` C++
+static float posz = 10.0f;
+static float flag = 1.0f;
+if (posz > 100.0f) flag = -1.0f;
+else if (posz < 10.0f) flag = 1.0f;
+posz += flag * 1.0;
+D3DXVECTOR3 vec3Eye(0.0f, 0.0f, posz);
+```
 
 ## d3d9_transform_triangle_save_raw
 
