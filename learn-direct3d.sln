@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "d3d9_transform_triangle_sav
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "d3d9_hello_triangle_indexed", "d3d9_hello_triangle_indexed\d3d9_hello_triangle_indexed.vcxproj", "{8A2F42AB-D745-474D-878B-883244E7BE5D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "d3d9_simple_modeling", "d3d9_simple_modeling\d3d9_simple_modeling.vcxproj", "{067A0020-6792-4BA7-9EA7-22BB57232923}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +83,14 @@ Global
 		{8A2F42AB-D745-474D-878B-883244E7BE5D}.Release|x64.Build.0 = Release|x64
 		{8A2F42AB-D745-474D-878B-883244E7BE5D}.Release|x86.ActiveCfg = Release|Win32
 		{8A2F42AB-D745-474D-878B-883244E7BE5D}.Release|x86.Build.0 = Release|Win32
+		{067A0020-6792-4BA7-9EA7-22BB57232923}.Debug|x64.ActiveCfg = Debug|x64
+		{067A0020-6792-4BA7-9EA7-22BB57232923}.Debug|x64.Build.0 = Debug|x64
+		{067A0020-6792-4BA7-9EA7-22BB57232923}.Debug|x86.ActiveCfg = Debug|Win32
+		{067A0020-6792-4BA7-9EA7-22BB57232923}.Debug|x86.Build.0 = Debug|Win32
+		{067A0020-6792-4BA7-9EA7-22BB57232923}.Release|x64.ActiveCfg = Release|x64
+		{067A0020-6792-4BA7-9EA7-22BB57232923}.Release|x64.Build.0 = Release|x64
+		{067A0020-6792-4BA7-9EA7-22BB57232923}.Release|x86.ActiveCfg = Release|Win32
+		{067A0020-6792-4BA7-9EA7-22BB57232923}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
